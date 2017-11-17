@@ -6,10 +6,15 @@ const program = require('commander');
 
 program
     .version('1.0.0')
-    .option('-s --script [script]')
+    .usage('<script>')
     .parse(process.argv);
 
 const script = program.script;
+
+if (typeof script === 'undefined') {
+    program.outputHelp();
+    process.exit(1);
+}
 
 (async function exec() {
     const raw = await require('get-stdin')();
@@ -25,6 +30,6 @@ const script = program.script;
         }
         console.log(fn(input));
     } catch (e) {
-        console.log(e);
+        console.error(e);
     }
 })();
