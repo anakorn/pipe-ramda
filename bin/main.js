@@ -25,7 +25,8 @@ async function main(script) {
         } else {
             input = await require('get-stdin')();
         }
-        console.log(invokeScript(script, JSON.parse(input)));
+        const res = invokeScript(script, JSON.parse(input));
+        console.log(JSON.stringify(res, null, 4));
     } catch (e) {
         console.error(e);
     }
