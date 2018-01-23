@@ -1,5 +1,14 @@
 # Usage
 ```sh
-# prints ["SOME", "VALID", "JSON"]
-$ echo '["some", "valid", "json"]' | pipe-ramda '_.map(x => x.toUpperCase())'
+$ cat ./package.json | pipe-ramda 'compose(map(toUpper), Object.keys)'
+[
+    "NAME",
+    "VERSION",
+    "DESCRIPTION",
+    "AUTHOR",
+    "LICENSE",
+    "BIN",
+    "DEPENDENCIES",
+    "ENGINES"
+]
 ```
